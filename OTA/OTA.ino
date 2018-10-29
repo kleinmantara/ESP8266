@@ -37,7 +37,7 @@ const char* ota_password = "94km9d$3";
 void setupOTA() {
   info(F("Starting OTA"));
 
-  ArduinoOTA.setHostname(hostFQN);
+  ArduinoOTA.setHostname(host);
   ArduinoOTA.setPassword(ota_password);
   ArduinoOTA.begin();
 
@@ -45,7 +45,7 @@ void setupOTA() {
   int waitTimeForOTA = 2000; // 2s
 
   if (isErrorReason()) {
-    sendMessage(String(hostName) + " EMERGENCY OTA: " + WiFi.localIP().toString() + ", ERROR: " + ESP.getResetInfo());
+    sendMessage(String(host) + " EMERGENCY OTA: " + WiFi.localIP().toString() + ", ERROR: " + ESP.getResetInfo());
 
     // 1 Minute emergency OTA
     waitTimeForOTA = 60000;
